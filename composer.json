@@ -1,0 +1,21 @@
+{
+    "name": "tomasz/php-framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tomasz Dąbrowski",
+            "email": "td.tomaszd7@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/http-foundation": "^3.3",
+        "twig/twig": "^2.4",
+        "league/flysystem": "^1.0",
+        "symfony/debug": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Weekend\\": "src/"
+        }
+    }
+}
