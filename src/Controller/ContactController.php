@@ -5,24 +5,23 @@ namespace Weekend\Controller;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 use \Symfony\Component\HttpFoundation\Response;
-// use \Symfony\Component\HttpFoundation\Request;
+use \Symfony\Component\HttpFoundation\Request;
+use Weekend\Service\TemplateService;
 
 class ContactController
 {
-    protected $twig;
+    protected $theme;
 
-    public function __construct()
+    public function __construct(TemplateService $theme)
     {
-        $loader = new Twig_Loader_Filesystem(__DIR__.'/../../templates');
-        $this->twig = new Twig_Environment($loader);
+        $this->theme = $theme;
     }
 
     public function get()
     {
-        $form = $this->twig->render('forms/contact.html');
-        $content = $this->twig->render('index.html', [
-            'title' => 'Contact',
-            'content' => $form,
+        // $form = $this->twig->render('forms/contact.html');
+        $content = $this->theme->render('contact.html', [
+            'title' => 'Contact'
         ]);
         return new Response($content);
     }
@@ -30,7 +29,7 @@ class ContactController
     public function post(Request $request)
     {
         // TODO validate input and send mail
-        $content = $this->twig->render('index.html', [
+        $content = $this->theme->render('basic.html', [
             'title' => 'Contect',
             'content' => 'Thank you for your message'
         ]);

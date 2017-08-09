@@ -6,5 +6,9 @@
     "about": {
         "title": "About",
         "content": "This is an example site"
+    },
+    "contact": {
+        "title": "Contact",
+        "content": "Contact content"
     }
 }
