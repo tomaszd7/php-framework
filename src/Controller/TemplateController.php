@@ -8,7 +8,7 @@ use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\Request;
 use Weekend\Service\TemplateService;
 
-class ContactController
+class TemplateController
 {
     protected $theme;
 
@@ -20,20 +20,11 @@ class ContactController
     public function get()
     {
         // $form = $this->twig->render('forms/contact.html');
-        $content = $this->theme->render('contact.html', [
-            'title' => 'Contact'
+        $content = $this->theme->render('template.html', [
+            'title' => 'Template'
         ]);
         return new Response($content);
     }
 
-    public function post(Request $request)
-    {
-        // TODO validate input and send mail
-        $content = $this->theme->render('basic.html', [
-            'title' => 'Contect',
-            'content' => 'Thank you for your message'
-        ]);
-        return new Response($content);
-    }
 }
  ?>

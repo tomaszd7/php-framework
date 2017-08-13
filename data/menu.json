@@ -10,5 +10,9 @@
     "contact": {
         "title": "Contact",
         "content": "Contact content"
+    },
+    "template": {
+        "title": "Template",
+        "content": "Template content"
     }
 }

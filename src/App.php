@@ -11,7 +11,7 @@ use \Symfony\Component\HttpFoundation\Response;
 // use Twig_Environment;
 // use Twig_Loader_Filesystem;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+    use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 class App {
@@ -43,12 +43,13 @@ class App {
     {
         $path = $request->getPathInfo();
         $method = strtolower($request->getMethod());
-
         $routes = [
             '/' => 'basic_page_controller',
             '/index' => 'basic_page_controller',
             '/about' => 'basic_page_controller',
-            '/contact' => 'contact_controller'
+            '/contact' => 'contact_controller',
+            '/template' => 'template_controller',
+
         ];
 
         if (isset($routes[$path]))

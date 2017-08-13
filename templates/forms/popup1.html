@@ -1,0 +1,100 @@
+<div class="popup panel panel-primary center-block">
+    <div class="popup-head panel-heading bg-info panel-title text-center">
+        Stworzenie nowej strony
+    </div>
+    <div class="popup-body panel-body">
+        <form class="form-horizontal" action="index.html" method="post">
+            <div class="popup-row form-group">
+                <label for="email" class="control-label col-sm-2">Email</label>
+                <div class="col-sm-8">
+                    <input type="email" name="email" value="" class="form-control">
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="popup-row form-group">
+                <label for="password" class="control-label col-sm-2">Hasło</label>
+                <div class="col-sm-8">
+                    <input type="password" name="password" value="" class="form-control">
+                </div>
+                <img src="" alt="">
+            </div>
+            <hr>
+            <div class="popup-row form-group">
+                <label for="name" class="control-label col-sm-2">Imię</label>
+                <div class="col-sm-8">
+                    <input type="text" name="name" value="" class="form-control">
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="popup-row form-group">
+                <label for="surname" class="control-label col-sm-2">Nazwisko</label>
+                <div class="col-sm-8">
+                    <input type="text" name="surname" value="" class="form-control">
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="popup-row form-group">
+                <label for="pseudoname" class="control-label col-sm-2">Pseudonim</label>
+                <div class="col-sm-8">
+                    <input type="text" name="pseudoname" value="" class="form-control">
+                </div>
+                <img src="" alt="">
+            </div>
+            <hr>
+            <div class="popup-row form-group">
+                <label for="" class="control-label col-sm-2">Data urodzenia</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="form-control " name="day">
+                                <option value="">Dzień</option>
+                                {% for i in 1..31 %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control col-sm-2" name="month">
+                                <option value="">Miesiąc</option>
+                                {% for i in 1..12 %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control col-sm-2" name="year">
+                                <option value="">Rok</option>
+                                {% for i in 2000..2020 %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="popup-row form-group">
+                <label for="sex" class="control-label col-sm-2">Płeć</label>
+                <div class="col-sm-8">
+                    <input type="radio" name="sex" value="M">Mężczyzna
+                    <input type="radio" name="sex" value="K">Kobieta
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="popup-row form-group">
+                <label for="livingplace" class="control-label col-sm-2">Miejsce zamieszkania</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="livingplace">
+                        <option value="Warszawa">Warszawa</option>
+                        <option value="Poznań">Poznań</option>
+                        <option value="Wrocław">Wrocław</option>
+                        <option value="Kutno">Kutno</option>
+                    </select>
+                </div>
+                <img src="" alt="">
+            </div>
+            <hr>
+        </form>
+    </div>
+</div>
