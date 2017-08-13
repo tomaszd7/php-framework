@@ -11,7 +11,7 @@ use \Symfony\Component\HttpFoundation\Response;
 // use Twig_Environment;
 // use Twig_Loader_Filesystem;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-    use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 class App {
