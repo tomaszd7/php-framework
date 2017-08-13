@@ -1,6 +1,6 @@
 <?php
 
-namespace Weekend\Controller;
+// namespace Weekend\Controller;
 
 use Twig_Environment;
 use Twig_Loader_Filesystem;

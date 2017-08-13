@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Weekend\\": "src/"            
+            "Weekend\\": "lib/weekend",
+            "": "src/"
         }
     }
 }

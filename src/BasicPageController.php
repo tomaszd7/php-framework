@@ -1,6 +1,6 @@
 <?php
 
-namespace Weekend\Controller;
+// namespace Weekend\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
