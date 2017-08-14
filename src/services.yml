@@ -5,3 +5,11 @@ services:
     basic_page_controller:
         class:      BasicPageController
         arguments:  ['@template_service', '@config_service']
+
+    route_collection:
+        class:      League\Route\RouteCollection
+
+    diactoros_factory:
+        class:      Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory
+    diactoros_emiter:
+        class:      Zend\Diactoros\Response\SapiEmitter

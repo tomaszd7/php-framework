@@ -2,12 +2,13 @@
 
 // namespace Weekend\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\HttpFoundation\Response;
+// use Symfony\Component\HttpFoundation\Request;
 // use Twig_Environment;
 use Weekend\Service\ConfigService;
-use \Twig_Environment;
+// use \Twig_Environment;
 use Weekend\Service\TemplateService;
+use Zend\Diactoros\Response;
 
 class BasicPageController
 {
@@ -27,18 +28,35 @@ class BasicPageController
         $this->config = $config;
     }
 
-    public function get(Request $request)
+    // public function get(Request $request)
+    // {
+    //     $path = $request->getPathInfo();
+    //     $page = ($path == '/') ? 'index' : substr($path, 1);
+    //     $menu = $this->config->getConfig();
+    //     if (isset($menu[$page]))
+    //     {
+    //         $content = $this->theme->render('basic.html', $menu[$page]);
+    //         return new Response($content);
+    //     }
+    //     return Response::create("not found", 404);
+    // }
+
+    public function actionIndex($request,  $response)
     {
-        $path = $request->getPathInfo();
+        $path = $request->getUri()->getPath();
         $page = ($path == '/') ? 'index' : substr($path, 1);
         $menu = $this->config->getConfig();
         if (isset($menu[$page]))
         {
             $content = $this->theme->render('basic.html', $menu[$page]);
-            return new Response($content);
+
+            $response->getBody()->write($content);
+            return $response;
         }
-        return Response::create("not found", 404);
+        die('no menu');
+
     }
+
 }
 
  ?>

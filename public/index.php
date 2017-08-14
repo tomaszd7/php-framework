@@ -4,14 +4,16 @@ use \Symfony\Component\Debug\Debug;
 
 require __DIR__ . '/../vendor/autoload.php';
 Debug::enable();
-$request = Request::createFromGlobals();
 
+// Weekend app and custom routing impementation
+// $request = Request::createFromGlobals();
+// $app = new \Weekend\App();
+// $response = $app->weekendRouting($request);
+// $response->send();
+
+// League Route implementation
 $app = new \Weekend\App();
-$app->addRoute('/', 'get', 'basic_page_controller');
-$app->addRoute('/index', 'get', 'basic_page_controller');
-$app->addRoute('/about', 'get', 'basic_page_controller');
+$app->leagueRouting();
 
-$response = $app->run($request);
-$response->send();
 
  ?>

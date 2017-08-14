@@ -21,6 +21,10 @@ class App {
     protected $container;
     protected $routes;
 
+    protected $psr7Request;
+    protected $psr7Response;
+
+
     public function __construct()
     {
         $this->container = new ContainerBuilder();
@@ -33,14 +37,27 @@ class App {
         //
         // $loader = new Twig_Loader_Filesystem(__DIR__.'/../templates');
         // $this->twig = new Twig_Environment($loader);
+
+        // converting symfony request and reponse into psr7
+        $this->initLeagueRoute();
     }
 
-    public function addRoute($path, $method, $controller)
+    private function initLeagueRoute()
     {
-        $this->routes[$path][$method] = $controller;
+        $psr7Factory = $this->container->get('diactoros_factory');
+        $symfonyRequest = Request::createFromGlobals();
+        $this->psr7Request = $psr7Factory->createRequest($symfonyRequest);
+
+        $symfonyResponse = new Response();
+        $this->psr7Response = $psr7Factory->createResponse($symfonyResponse);
     }
 
-    public function run(Request $request)
+    // public function addRoute($path, $method, $controller)
+    // {
+    //     $this->routes[$path][$method] = $controller;
+    // }
+
+    public function weekendRouting(Request $request)
     {
         $path = $request->getPathInfo();
         $method = strtolower($request->getMethod());
@@ -62,7 +79,21 @@ class App {
             // }
         }
         return Response::create("not found", 404);
+    }
 
+    public function leagueRouting()
+    {
+        $route = $this->container->get('route_collection');
+
+        $route->map('GET', '/', [$this->container->get('basic_page_controller'), 'actionIndex']);
+        $route->map('GET', '/index', [$this->container->get('basic_page_controller'), 'actionIndex']);
+        $route->map('GET', '/about', [$this->container->get('basic_page_controller'), 'actionIndex']);
+
+        // ten dispatch przechwytuje response po mapowaniu z funkcji map
+        $response = $route->dispatch($this->psr7Request, $this->psr7Response);
+
+        $this->container->get('diactoros_emiter')->emit($response);
+        return true;
     }
 
 }
