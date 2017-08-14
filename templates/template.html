@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 
 {% block content %}
+    <code>{{ formSubmit | default('') }}</code>
     {% include 'forms/popup1.html' %}
 {% endblock %}

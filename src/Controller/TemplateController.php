@@ -26,5 +26,14 @@ class TemplateController
         return new Response($content);
     }
 
+    public function post()
+    {
+        $content = $this->theme->render('template.html', [
+            'title' => 'Template',
+            'formSubmit' => 'Thank you for your submit'
+        ]);
+        return new Response($content);
+    }
+
 }
  ?>
