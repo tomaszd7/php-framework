@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<script>
+    $('document').ready(function() {
+        
+        function moveLeft() {
+            $('img').animate({
+                right: '+=500px'
+            }, 2000, "linear", moveRight);
+        }
+        
+        function moveRight() {
+            $('img').animate({
+                right: '-=500px'
+            }, 2000, "linear", moveLeft);
+        }
+        
+        moveRight();
+        
+    });
+    </script>
+    <img style="position: relative;" src="http://www.gify.net/data/media/1749/mops-ruchomy-obrazek-0016.gif">
+{% endblock %}

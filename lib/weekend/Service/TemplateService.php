@@ -21,6 +21,7 @@ class TemplateService
 
     public function render($templateName, $variables)
     {
+//        bulding nav menu structure
         foreach ($this->menu as $path => $menuItem)
         {
             $variables['nav'][] = [

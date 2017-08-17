@@ -3,6 +3,7 @@ parameters:
     data_dir:       '../data'
 
 services:
+#    twig services
     loader:
         class:      Twig_Loader_Filesystem
         arguments:  ['%template_dir%']
@@ -10,6 +11,7 @@ services:
         class:      Twig_Environment
         arguments:  ['@loader']
 
+#filesystem services
     adapter:
         class:      League\Flysystem\Adapter\Local
         arguments:  ['%data_dir%']
@@ -17,19 +19,15 @@ services:
         class:      League\Flysystem\Filesystem
         arguments:  ['@adapter']
 
-    contact_controller:
-        class:      Weekend\Controller\ContactController
-        arguments:  ['@template_service']
-    template_controller:
-        class:      Weekend\Controller\TemplateController
-        arguments:  ['@template_service']
-    basic_page_controller:
-        class:      Weekend\Controller\BasicPageController
-        arguments:  ['@template_service', '@config_service']
-
+# services for controllers
     config_service:
         class:      Weekend\Service\ConfigService
         arguments:  ['@filesystem']
     template_service:
         class:      Weekend\Service\TemplateService
         arguments:  ['@twig', '@config_service']
+                
+# controllers
+    basic_page_controller:
+        class:      Weekend\Controller\BasicPageController
+        arguments:  ['@template_service', '@config_service']

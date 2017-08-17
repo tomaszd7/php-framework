@@ -14,5 +14,9 @@
     "template": {
         "title": "Template",
         "content": "Template content"
+    },
+    "dog": {
+        "title": "Walking dog",
+        "content": "Template content"
     }
 }

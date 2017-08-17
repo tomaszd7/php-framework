@@ -18,21 +18,19 @@ class App {
     // protected $twig;
     // protected $filesystem;
 
-protected $container;
-protected $routes;
+    protected $container;
+    protected $loader;
+    protected $routes;
 
     public function __construct()
     {
         $this->container = new ContainerBuilder();
-        $loader = new YamlFileLoader($this->container,
+        $this->loader = new YamlFileLoader($this->container,
             new FileLocator(__DIR__. '/../../'));
-        $loader->load('services.yml');
-        $loader->load('src/services.yml');
-        // $adapter = new Local(__DIR__ . '/../data');
-        // $this->filesystem = new Filesystem($adapter);
-        //
-        // $loader = new Twig_Loader_Filesystem(__DIR__.'/../templates');
-        // $this->twig = new Twig_Environment($loader);
+        $this->loader->load('services.yml');
+
+        $this->addRoute('/', 'get', 'basic_page_controller');
+        $this->addRoute('/index', 'get', 'basic_page_controller');
     }
 
     public function addRoute($path, $method, $controller)
@@ -44,13 +42,6 @@ protected $routes;
     {
         $path = $request->getPathInfo();
         $method = strtolower($request->getMethod());
-
-        // $routes = [
-        //     '/' => 'basic_page_controller',
-        //     '/index' => 'basic_page_controller',
-        //     '/about' => 'basic_page_controller',
-        //     '/contact' => 'contact_controller'
-        // ];
 
         if (isset($this->routes[$path][$method]))
         {
