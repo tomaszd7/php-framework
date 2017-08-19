@@ -18,5 +18,9 @@
     "dog": {
         "title": "Walking dog",
         "content": "Template content"
+    },
+    "summit": {
+        "title": "PHPers Summit",
+        "content": ""
     }
 }

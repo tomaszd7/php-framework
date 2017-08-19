@@ -10,3 +10,6 @@ services:
     dog_page_controller:
         class:      MyApp\Controller\DogPageController
         arguments:  ['@template_service', '@config_service']
+    summit_controller:
+        class:      MyApp\Controller\SummitController
+        arguments:  ['@template_service', '@config_service']
