@@ -1,6 +1,10 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    Summit
-    {{ curl }}
+    
+    <ul>
+    {% for key, status in curl %}
+    <li>{{ key }}: <span style="color:red">{{ status }}</span></li>
+    {% endfor %}
+    </ul>
 {% endblock %}

@@ -6,9 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 // use Twig_Environment;
 use Weekend\Service\ConfigService;
-use \Twig_Environment;
 use Weekend\Service\TemplateService;
 use Curl\Curl;
+use Symfony\Component\DomCrawler\Crawler;
 
 class SummitController
 {
@@ -36,9 +36,8 @@ class SummitController
         if (isset($menu[$page]))
         {
             $curlResponse = $this->getCurl();
-            $data = json_encode($curlResponse);
-            $menu[$page]['curl'] = $data;
-            
+            $crawlerResponse = $this->getCrawler($curlResponse);
+            $menu[$page]['curl'] = $crawlerResponse;
             $content = $this->theme->render('summit.html', $menu[$page]);
             return new Response($content);
         }
@@ -46,13 +45,28 @@ class SummitController
     }
     
     protected function getCurl() 
-    {
-        
+    {        
         $curl = new Curl();
-//        $curl->set
         $curl->get('https://phpers-summit-2017.evenea.pl/');
         $response = ($curl->error) ? $curl->error_message : $curl->response;
         return $response;        
+    }
+    
+    protected function getCrawler($htmlString)
+    {
+        $crawler = new Crawler($htmlString);        
+        $elements = $crawler->filter('td.tdAvailable.lowercase')
+                ->each(function ($node, $i) {
+                    $title = substr(trim($node->previousAll()->text()), 0, 40);
+                    $status = trim($node->text());
+                    return [$title, $status];
+                });                   
+        $response = [];
+        foreach ($elements as $pair)
+        {
+            $response[$pair[0]] = $pair[1];
+        }                        
+        return $response;
     }
 }
 
