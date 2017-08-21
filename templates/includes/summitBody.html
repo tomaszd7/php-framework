@@ -1,0 +1,26 @@
+<div>
+    <div class="row">
+        <div class="col-xs-4">
+            <form action="post">
+                <label>Querrying</label>
+                <input id="starter" type="button" value="Start/Stop" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="col-xs-8">
+            <table class="table table-hover">
+                <tbody>
+                {% for key, status in curl %}
+                <tr>
+                    <td>{{ key }}: </td><td class="danger">{{ status }}</td>
+                {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <ul id="messages">
+            
+        </ul>
+    </div>
+</div>

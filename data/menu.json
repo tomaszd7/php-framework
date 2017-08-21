@@ -22,5 +22,9 @@
     "summit": {
         "title": "PHPers Summit",
         "content": ""
+    },
+    "api": {
+        "title": "API",
+        "content": ""
     }
 }

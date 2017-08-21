@@ -13,3 +13,13 @@ services:
     summit_controller:
         class:      MyApp\Controller\SummitController
         arguments:  ['@template_service', '@config_service']
+    api_controller:
+        class:      MyApp\Controller\ApiController
+        arguments:  ['@template_service', '@config_service']
+        
+        
+#other services
+    curl:
+        class:      Curl\Curl
+    crawler:
+        class:      Symfony\Component\DomCrawler\Crawler

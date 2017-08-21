@@ -2,9 +2,11 @@
 
 {% block content %}
     
-    <ul>
-    {% for key, status in curl %}
-    <li>{{ key }}: <span style="color:red">{{ status }}</span></li>
-    {% endfor %}
-    </ul>
+    {% include 'includes/summitBody.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+    
+    <script type="text/javascript" src="/js/sites/summit.js"></script>
 {% endblock %}

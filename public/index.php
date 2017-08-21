@@ -11,6 +11,7 @@ $app = new MyApp\MyApp();
 $app->addRoute('/dog', 'get', 'dog_page_controller');
 $app->addRoute('/template', 'get', 'template_controller');
 $app->addRoute('/summit', 'get', 'summit_controller');
+$app->addRoute('/api', 'get', 'api_controller');
 
 $response = $app->run($request);
 $response->send();

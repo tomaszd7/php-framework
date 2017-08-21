@@ -3,4 +3,10 @@
 {% block content %}
     <code>{{ formSubmit | default('') }}</code>
     {% include 'forms/popup1.html' %}
+        
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/js/sites/template.js"></script>
 {% endblock %}

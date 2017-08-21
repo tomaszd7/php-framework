@@ -49,6 +49,16 @@ class App {
             $controller = $this->container->get($controllerName);
             // if (is_callable([$controller, $method]))
             // {
+            
+            // uruchamianie controlera
+            // najpierw constructor
+            // poziej dodac dependency 
+            // pozniej metoda z requestu
+            if (method_exists($controller, 'assignDependencies')) 
+            {
+                $controller->assignDependencies($this->container);
+            }
+            
             return call_user_func_array([$controller, $method], [$request]);
             // }
         }

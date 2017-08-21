@@ -5,3 +5,10 @@
 /*.popup {
     width: 600px;
 }*/
+
+
+#messages {
+    height: 250px;
+    overflow-y: scroll;
+    list-style-type: none;
+}
