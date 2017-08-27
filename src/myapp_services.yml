@@ -9,13 +9,13 @@ services:
         arguments:  ['@template_service']
     dog_page_controller:
         class:      MyApp\Controller\DogPageController
-        arguments:  ['@template_service', '@config_service']
+        arguments:  ['@template_service', '@layout_service']
     summit_controller:
         class:      MyApp\Controller\SummitController
-        arguments:  ['@template_service', '@config_service']
+        arguments:  ['@template_service', '@layout_service']
     api_controller:
         class:      MyApp\Controller\ApiController
-        arguments:  ['@template_service', '@config_service']
+        arguments:  ['@template_service', '@layout_service']
         
         
 #page parsing service

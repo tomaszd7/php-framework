@@ -15,7 +15,7 @@ class MyPageParsing
 
     private $curl;
     private $crawler;
-        private $url = 'https://phpers-summit-2017.evenea.pl/';
+    private $url = 'https://phpers-summit-2017.evenea.pl/';
     private $html;
     private $response;
 

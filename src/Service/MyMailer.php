@@ -5,20 +5,12 @@ namespace MyApp\Service;
 use Swift_Mailer;
 use Swift_Message;
 
-interface myMailerInterface
-{
-
-    public function sendMail();
-
-    public function emailWasSent();
-}
-
 /**
  * Description of MyMailer
  *
  * @author tomasz
  */
-class MyMailer implements myMailerInterface
+class MyMailer 
 {
 
     private $subject = 'Testing topic';

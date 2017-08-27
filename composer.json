@@ -18,11 +18,12 @@
         "curl/curl": "^1.8",
         "symfony/dom-crawler": "^3.3",
         "symfony/css-selector": "^3.3",
-        "swiftmailer/swiftmailer": "^6.0"
+        "swiftmailer/swiftmailer": "^6.0",
+        "symfony/routing": "^3.3"
     },
     "autoload": {
         "psr-4": {
-            "Weekend\\": "lib/weekend/",
+            "Turtle\\": "lib/turtle/",
             "MyApp\\": "src/"
         }
     }

@@ -6,12 +6,12 @@ require __DIR__ . '/../vendor/autoload.php';
 Debug::enable();
 $request = Request::createFromGlobals();
 
-$app = new MyApp\MyApp();
+$app = new MyApp\MyApp($request);
 
-$app->addRoute('/dog', 'get', 'dog_page_controller');
-$app->addRoute('/template', 'get', 'template_controller');
-$app->addRoute('/summit', 'get', 'summit_controller');
-$app->addRoute('/api', 'get', 'api_controller');
+//$app->addRoute('/dog', 'get', 'dog_page_controller');
+//$app->addRoute('/template', 'get', 'template_controller');
+//$app->addRoute('/summit', 'get', 'summit_controller');
+//$app->addRoute('/api', 'get', 'api_controller');
 
 $response = $app->run($request);
 $response->send();

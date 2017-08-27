@@ -1,0 +1,19 @@
+basic_route:
+    path:       /
+    defaults:   {_controller: 'basic_page_controller::indexAction'}
+    methods:    [GET, HEAD]
+    
+basic_index_route:
+    path:       /index
+    defaults:   {_controller: 'basic_page_controller::indexAction'}
+    methods:    [GET, HEAD]
+    
+summit_route:
+    path:       /summit
+    defaults:   {_controller: 'summit_controller::indexAction'}
+    methods:    [GET, HEAD]
+    
+api_data_route:
+    path:       /api
+    defaults:   {_controller: 'api_controller::apiData'}
+    methods:    [GET, HEAD]

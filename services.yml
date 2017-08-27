@@ -20,14 +20,14 @@ services:
         arguments:  ['@adapter']
 
 # services for controllers
-    config_service:
-        class:      Weekend\Service\ConfigService
+    layout_service:
+        class:      Turtle\Service\LayoutService
         arguments:  ['@filesystem']
     template_service:
-        class:      Weekend\Service\TemplateService
-        arguments:  ['@twig', '@config_service']
+        class:      Turtle\Service\TemplateService
+        arguments:  ['@twig', '@layout_service']
                 
 # controllers
     basic_page_controller:
-        class:      Weekend\Controller\BasicPageController
-        arguments:  ['@template_service', '@config_service']
+        class:      Turtle\Controller\BasicPageController
+        arguments:  ['@template_service', '@layout_service']

@@ -1,9 +1,9 @@
 <?php
 
-namespace Weekend\Service;
+namespace Turtle\Service;
 
 use Twig_Environment;
-use Weekend\Service\ConfigService;
+use Turtle\Service\LayoutService;
 
 /**
  *
@@ -13,10 +13,10 @@ class TemplateService
     protected $twig;
     protected $menu;
 
-    function __construct(Twig_Environment $twig, ConfigService $config)
+    function __construct(Twig_Environment $twig, LayoutService $config)
     {
         $this->twig = $twig;
-        $this->menu = $config->getConfig();
+        $this->menu = $config->getLayoutData();
     }
 
     public function render($templateName, $variables)
