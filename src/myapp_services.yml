@@ -18,8 +18,31 @@ services:
         arguments:  ['@template_service', '@config_service']
         
         
-#other services
+#page parsing service
     curl:
         class:      Curl\Curl
     crawler:
         class:      Symfony\Component\DomCrawler\Crawler
+        
+    myPageParsing:
+        class:      MyApp\Service\MyPageParsing
+        arguments:  ['@curl', '@crawler']
+        
+
+#swiftmailer service 
+    smtp_transport:     
+        class:      \Swift_SmtpTransport
+        arguments:  ['%url%', '%port%', '%security%']
+        calls:
+            - [setUsername, ['%user%']]
+            - [setPassword, ['%pass%']]
+    mailer:
+        class:      \Swift_Mailer
+        arguments:  ['@smtp_transport']
+        
+    message:        
+        class:      \Swift_Message
+        
+    myMailer:      
+        class:      MyApp\Service\MyMailer
+        arguments:  ['@mailer', '@message']

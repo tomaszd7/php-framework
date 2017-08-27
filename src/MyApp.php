@@ -9,6 +9,7 @@ class MyApp extends \Weekend\App {
     {       
         parent::__construct();
 
+        $this->loader->load('src/hide_myapp_mailer.yml');
         $this->loader->load('src/myapp_services.yml');
     }
 }
