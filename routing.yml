@@ -15,5 +15,10 @@ summit_route:
     
 api_data_route:
     path:       /api
-    defaults:   {_controller: 'api_controller::apiData'}
+    defaults:   {_controller: 'api_controller::dataAction'}
+    methods:    [GET, HEAD]
+    
+api_mailer_route:
+    path:       /apimail
+    defaults:   {_controller: 'api_controller::mailAction'}
     methods:    [GET, HEAD]

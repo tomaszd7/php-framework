@@ -10,9 +10,8 @@ use Swift_Message;
  *
  * @author tomasz
  */
-class MyMailer 
+class MyMailer
 {
-
     private $subject = 'Testing topic';
     private $from = ['tdabro@wp.pl' => 'MyPHPTestingFramework'];
     private $to = 'td.tomaszd7@gmail.com';

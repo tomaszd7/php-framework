@@ -1,15 +1,9 @@
 services:
 
 # myapp controllers
-    contact_controller:
-        class:      MyApp\Controller\ContactController
-        arguments:  ['@template_service']
     template_controller:
         class:      MyApp\Controller\TemplateController
         arguments:  ['@template_service']
-    dog_page_controller:
-        class:      MyApp\Controller\DogPageController
-        arguments:  ['@template_service', '@layout_service']
     summit_controller:
         class:      MyApp\Controller\SummitController
         arguments:  ['@template_service', '@layout_service']

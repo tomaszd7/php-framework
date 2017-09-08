@@ -6,9 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Turtle\Service\LayoutService;
 use Turtle\Service\TemplateService;
 
-class TurtleController
+abstract class TurtleController
 {
-
     protected $config;
     protected $theme;
     protected $request;
@@ -42,7 +41,7 @@ class TurtleController
             $this->$dependency = $container->get($dependency);
         }
     }
-    
+
     public function areDependencies()
     {
         return (bool) count($this->dependencies);

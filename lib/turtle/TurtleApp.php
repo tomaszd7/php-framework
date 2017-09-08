@@ -13,7 +13,6 @@ use Symfony\Component\Routing\RequestContext;
 
 class TurtleApp
 {
-
     protected $container;
     protected $loader;
     protected $routes;
@@ -48,9 +47,7 @@ class TurtleApp
     {
         $context = new RequestContext();
         $context->fromRequest($request);
-
         $matcher = new UrlMatcher($this->routes, $context);
-
         $exceptionFlag = true;
 
         try {
@@ -63,7 +60,6 @@ class TurtleApp
                 return false;
             }
         }
-
         return $matcher['_controller'];
     }
 
@@ -76,14 +72,14 @@ class TurtleApp
         if (!$controller->prepareLayoutData($request)) {
             return Response::create("Layout data not found", 404);
         }
-        
+
         if ($controller->areDependencies()) {
             $controller->assignDependencies($this->container);
         }
 
         $method = $controllerArray[1];
 
-        return call_user_func_array([$controller, $method], [$request]);
+        return call_user_func_array([$controller, $method], []);
     }
 
 }
