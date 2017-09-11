@@ -12,8 +12,8 @@ use Swift_Message;
  */
 class MyMailer
 {
-    private $subject = 'Testing topic';
-    private $from = ['tdabro@wp.pl' => 'MyPHPTestingFramework'];
+    private $subject = 'Evenea: ';
+    private $from = ['tdabro@wp.pl' => 'My Evenea Tester'];
     private $to = 'td.tomaszd7@gmail.com';
     private $body = 'Testing API message from PHP framework';
     protected $message;
@@ -27,12 +27,14 @@ class MyMailer
 
         $this->message->setSubject($this->subject);
         $this->message->setFrom($this->from);
-        $this->message->setTo($this->to);
+        $this->message->setTo($this->to);        
         $this->message->setBody($this->body);
-    }
+    }        
 
-    public function sendMail()
+    public function sendMail($subject = null, $body = null)
     {
+        $subject ? $this->message->setSubject($this->subject . $subject): null;
+        $body ? $this->message->setBody(json_encode($body)): null ;
         $this->receipients = $this->mailer->send($this->message);
     }
 

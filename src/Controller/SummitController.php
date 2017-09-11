@@ -7,7 +7,6 @@ use \Turtle\Controller\TurtleController;
 
 class SummitController extends TurtleController
 {
-
     protected $curl;
     protected $crawler;
     protected $myMailer;
@@ -21,12 +20,17 @@ class SummitController extends TurtleController
 
     public function indexAction()
     {
-        //        $this->myMailer->sendMail();
-//        var_dump($this->myMailer->emailWasSent());
-
+        $props = $this->yaml->getYamlData()['events']['reactJs'];
+        $this->myPageParsing->setProps($props);
         $data = $this->myPageParsing->getData();
 
         $this->layout['curl'] = $data;
+
+
+        if ($data['sendEmail'] === 'true') {
+//            $this->myMailer->sendMail('reactJs', $data);
+            $this->layout['mails_sent'] = 1;
+        }
 
         $content = $this->theme->render('summit.html', $this->layout);
         return new Response($content);

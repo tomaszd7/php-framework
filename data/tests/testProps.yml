@@ -1,0 +1,18 @@
+## YAML Template.
+---
+events:
+    exists:        
+        url: 'https://warsawjs-workshop-10.evenea.pl/'
+        parseElementCss: 'td.tdAvailable.lowercase'
+        parseTitle: 'Bilet dla'
+        parseValue: 'Jeszcze niedostępny'
+        analyzer: 'exists'
+
+    existsNot:        
+        url: 'https://warsawjs-workshop-10.evenea.pl/'
+        parseElementCss: 'td.tdAvailable.lowercase'
+        parseTitle: 'Bilet dla'
+        parseValue: 'Jeszcze niedostępny'
+        analyzer: 'not exists'
+                
+        

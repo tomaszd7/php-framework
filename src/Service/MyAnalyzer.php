@@ -7,12 +7,17 @@ namespace MyApp\Service;
  *
  * @author tomasz
  */
-class MyPageAnalyzer
+class MyAnalyzer
 {
     private $fields;
     private $props;
 
-    public function __construct(array $props)
+    public function __construct(array $props = null)
+    {
+        $this->props = $props;
+    }
+
+    public function setProps(array $props)
     {
         $this->props = $props;
     }
@@ -21,9 +26,9 @@ class MyPageAnalyzer
     {
         $this->fields = $fields;
         if ($this->props['analyzer'] === 'not exists') {
-            return $this->analyzeAreNot();
+            return $this->analyzeExistsNot();
         } else {
-            return $this->analyzeAre();
+            return $this->analyzeExists();
         }
     }
 
@@ -31,7 +36,7 @@ class MyPageAnalyzer
      * if return true - send email as observed text has changed 
      */
 
-    private function analyzeAre(): bool
+    private function analyzeExists(): bool
     {
         foreach ($this->fields as $field) {
             if (strpos($field['title'], $this->props['parseTitle']) !== false &&
@@ -42,7 +47,11 @@ class MyPageAnalyzer
         return false;
     }
 
-    private function analyzeAreNot(): bool
+    /*
+     * it has to check all pairs and not only one - assume title is singe match only
+     */
+
+    private function analyzeExistsNot(): bool
     {
         foreach ($this->fields as $field) {
             if (strpos($field['title'], $this->props['parseTitle']) !== false &&

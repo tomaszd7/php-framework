@@ -5,19 +5,22 @@ namespace Turtle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Turtle\Service\LayoutService;
 use Turtle\Service\TemplateService;
+use Turtle\Service\YamlService;
 
 abstract class TurtleController
 {
     protected $config;
     protected $theme;
+    protected $yaml;
     protected $request;
     protected $layout;
     protected $dependencies;
 
-    public function __construct(TemplateService $theme, LayoutService $config)
+    public function __construct(TemplateService $theme, LayoutService $config = null, YamlService $yaml = null)
     {
         $this->theme = $theme;
         $this->config = $config;
+        $this->yaml = $yaml;
     }
 
     public function prepareLayoutData(Request $request)

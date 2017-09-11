@@ -1,0 +1,19 @@
+
+{
+    "exists":
+            [{
+                    "title": "Bilet normalny",
+                    "value": "12 września"
+                }, {
+                    "title": "Bilet dla listy rezerwowej",
+                    "value": "Jeszcze niedostępny"
+                }],
+    "existsNot":
+            [{
+                    "title": "Bilet normalny",
+                    "value": "12 września"
+                }, {
+                    "title": "Bilet dla listy rezerwowej",
+                    "value": "Już dostępny"
+                }]
+}

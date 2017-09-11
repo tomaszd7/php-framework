@@ -1,0 +1,18 @@
+## YAML Template.
+---
+events:
+    phpSummit2017:        
+        url: 'https://phpers-summit-2017.evenea.pl/'
+        parseElementCss: 'td.tdAvailable.lowercase'
+        parseTitle: 'Symfony'
+        parseValue: 'Wyprzedane'
+        analyzer: 'not exists'
+
+    reactJs:        
+        url: 'https://warsawjs-workshop-10.evenea.pl/'
+        parseElementCss: 'td.tdAvailable.lowercase'
+        parseTitle: 'Bilet'
+        parseValue: 'Jeszcze niedostępne'
+        analyzer: 'not exists'
+                
+        

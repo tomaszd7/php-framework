@@ -6,7 +6,7 @@ services:
         arguments:  ['@template_service']
     summit_controller:
         class:      MyApp\Controller\SummitController
-        arguments:  ['@template_service', '@layout_service']
+        arguments:  ['@template_service', '@layout_service', '@yaml_service']
     api_controller:
         class:      MyApp\Controller\ApiController
         arguments:  ['@template_service', '@layout_service']
@@ -14,13 +14,23 @@ services:
         
 #page parsing service
     curl:
-        class:      Curl\Curl
+        class:      Curl\Curl        
+    myCurl:
+        class:      MyApp\Service\MyCurl
+        arguments:  ['@curl']
+        
     crawler:
-        class:      Symfony\Component\DomCrawler\Crawler
+        class:      Symfony\Component\DomCrawler\Crawler        
+    myCrawler:
+        class:      MyApp\Service\MyCrawler
+        arguments:  ['@crawler']
+        
+    myAnalyzer:
+        class:      MyApp\Service\MyAnalyzer
         
     myPageParsing:
         class:      MyApp\Service\MyPageParsing
-        arguments:  ['@curl', '@crawler']
+        arguments:  ['@myCurl', '@myCrawler', '@myAnalyzer']
         
 
 #swiftmailer service 

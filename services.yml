@@ -23,6 +23,9 @@ services:
     layout_service:
         class:      Turtle\Service\LayoutService
         arguments:  ['@filesystem']
+    yaml_service:
+        class:      Turtle\Service\YamlService
+        arguments:  ['@filesystem']
     template_service:
         class:      Turtle\Service\TemplateService
         arguments:  ['@twig', '@layout_service']

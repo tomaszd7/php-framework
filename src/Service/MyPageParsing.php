@@ -2,9 +2,9 @@
 
 namespace MyApp\Service;
 
-use Symfony\Component\DomCrawler\Crawler;
-use Curl\Curl;
-use MyApp\Service\MyPageAnalyzer;
+use MyApp\Service\MyAnalyzer;
+use MyApp\Service\MyCurl;
+use MyApp\Service\MyCrawler;
 
 /**
  * Description of MyPageParsing
@@ -16,72 +16,41 @@ class MyPageParsing
     private $curl;
     private $crawler;
     private $analyzer;
-    private $html;
     private $response;
-    private $props = [];
+    private $props;
+
 //    private $url;
 //    private $parseElementCss;
 //    private $parseTitle;
 //    private $parseValue;
-    private $phpSummit2017 = [
-        'url' => 'https://phpers-summit-2017.evenea.pl/',
-        'parseElementCss' => 'td.tdAvailable.lowercase',
-        'parseTitle' => 'Symfony',
-        'parseValue' => 'Wyprzedane',
-        'analyzer' => 'not exists'
-    ];
-    private $reactJs = [
-        'url' => 'https://warsawjs-workshop-10.evenea.pl/',
-        'parseElementCss' => 'td.tdAvailable.lowercase',
-        'parseTitle' => 'Bilet',
-        'parseValue' => 'Jeszcze niedostępne',
-        'analyzer' => 'not exists'
-    ];
 
-    public function __construct(Curl $curl, Crawler $crawler)
+    public function __construct(MyCurl $curl, MyCrawler $crawler, MyAnalyzer $analyzer)
     {
         $this->curl = $curl;
         $this->crawler = $crawler;
-        $this->createProperties($this->reactJs);
-        $this->analyzer = new MyPageAnalyzer($this->props);
+        $this->analyzer = $analyzer;
     }
 
-    private function createProperties(array $event)
+    public function setProps(array $props)
     {
-        $this->props = $event;
+        $this->props = $props;
+        $this->analyzer->setProps($props);
     }
 
-    protected function askWebsite()
+    private function process()
     {
-        $this->curl->get($this->props['url']);
-        if ($this->curl->error) {
-            throw new Exception($this->curl->error_message);
-        } else {
-            $this->html = $this->curl->response;
-        }
-    }
+        $html = $this->curl->getUrl($this->props['url']);
+        $elements = $this->crawler->parsePreviousSibling($html, $this->props['parseElementCss']);
 
-    protected function parseWebsite()
-    {
-        $this->crawler->addContent($this->html);
-        $elements = $this->crawler->filter($this->props['parseElementCss'])
-                ->each(function ($node, $i) {
-            $title = substr(trim($node->previousAll()->text()), 0, 40);
-            $status = trim($node->text());
-            return [
-                'title' => $title,
-                'value' => $status];
-        });
+        $this->response = $this->arrayIntoAssocArray($elements);
 
         $sendEmail = $this->analyzer->analyze($elements);
-        $this->response = $this->arrayIntoAssocArray($elements);
         $this->response['sendEmail'] = json_encode($sendEmail);
     }
 
     public function getApiData(): array
     {
-        $this->askWebsite();
-        $this->parseWebsite();
+        $this->process();
         $time = date('Y-m-d H:i:s');
         return [
             'time' => $time,
@@ -91,8 +60,7 @@ class MyPageParsing
 
     public function getData(): array
     {
-        $this->askWebsite();
-        $this->parseWebsite();
+        $this->process();
         return $this->response;
     }
 
